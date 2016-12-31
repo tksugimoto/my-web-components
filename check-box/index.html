@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<title>check-box サンプル</title>
+	<style>
+		body {
+			margin: 0px auto;
+			width: 800px;
+		}
+	</style>
+	<link rel="import" href="check-box.html">
+</head>
+<body>
+	<p>
+		<check-box id="test_check_box_1">
+			チェックボックス1
+		</check-box>
+	</p>
+	<p>
+		<check-box id="test_check_box_2">
+			チェックボックス2
+		</check-box>
+	</p>
+	<script>
+		document.getElementById("test_check_box_1").addEventListener("change", evt => {
+			console.log({
+				name: "チェックボックスが変更された",
+				checked: evt.checked,
+				element: evt.target
+			});
+		});
+		document.getElementById("test_check_box_2").addEventListener("change", evt => {
+			console.log({
+				name: "チェックボックスが変更された",
+				checked: evt.checked,
+				element: evt.target
+			});
+		});
+	</script>
+</body>
+</html>
