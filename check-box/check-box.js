@@ -17,33 +17,33 @@
 			const clone = thatDoc.importNode(template, true);
 			shadowRoot.appendChild(clone);
 			
-			this.checkbox = shadowRoot.querySelector("input");
+			this._checkbox = shadowRoot.querySelector("input");
 			
 			if (this.hasAttribute("checked")) {
-				this.checkbox.checked = true;
+				this._checkbox.checked = true;
 			}
 			if (this.hasAttribute("disabled")) {
-				this.checkbox.disabled = true;
+				this._checkbox.disabled = true;
 			}
 			
-			this.checkbox.addEventListener("change", () => {
+			this._checkbox.addEventListener("change", () => {
 				this.updateCheckedAttribute();
 				const event = new window.Event("change");
-				event.checked = this.checkbox.checked;
+				event.checked = this._checkbox.checked;
 				this.dispatchEvent(event);
 			});
 		}
 
 		set checked(value) {
-			this.checkbox.checked = !!value;
+			this._checkbox.checked = !!value;
 			this.updateCheckedAttribute();
 		}
 		get checked() {
-			return this.checkbox.checked;
+			return this._checkbox.checked;
 		}
 
 		updateCheckedAttribute() {
-			if (this.checkbox.checked) {
+			if (this._checkbox.checked) {
 				this.setAttribute("checked", true);
 			} else {
 				this.removeAttribute("checked");
