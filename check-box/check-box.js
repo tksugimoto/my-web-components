@@ -1,10 +1,9 @@
 (function (window, document) {
 	"use strict";
 	
-	const thatDoc = document;
-	const thisDoc = thatDoc.currentScript.ownerDocument;
+	const ownerDocument = document.currentScript.ownerDocument;
 	
-	const template = thisDoc.querySelector("template").content;
+	const template = ownerDocument.querySelector("template").content;
 	
 	class CheckBoxElement extends HTMLElement {
 		constructor() {
@@ -14,7 +13,7 @@
 				mode: "closed"
 			});
 
-			const clone = thatDoc.importNode(template, true);
+			const clone = template.cloneNode(true);
 			shadowRoot.appendChild(clone);
 			
 			this._checkbox = shadowRoot.querySelector("input");
