@@ -9,6 +9,29 @@
 	class CheckBoxElement extends HTMLElement {
 		constructor() {
 			super();
+
+			const shadowRoot = this.attachShadow({
+				mode: "closed"
+			});
+
+			const clone = thatDoc.importNode(template, true);
+			shadowRoot.appendChild(clone);
+			
+			this.checkbox = shadowRoot.querySelector("input");
+			
+			if (this.hasAttribute("checked")) {
+				this.checkbox.checked = true;
+			}
+			if (this.hasAttribute("disabled")) {
+				this.checkbox.disabled = true;
+			}
+			
+			this.checkbox.addEventListener("change", () => {
+				this.updateCheckedAttribute();
+				const event = new window.Event("change");
+				event.checked = this.checkbox.checked;
+				this.dispatchEvent(event);
+			});
 		}
 
 		set checked(value) {
@@ -26,30 +49,7 @@
 				this.removeAttribute("checked");
 			}
 		}
-
-		createdCallback() {
-			this.createShadowRoot();
-			
-			const clone = thatDoc.importNode(template, true);
-			this.shadowRoot.appendChild(clone);
-			
-			this.checkbox = this.shadowRoot.querySelector("input");
-			
-			if (this.hasAttribute("checked")) {
-				this.checkbox.checked = true;
-			}
-			if (this.hasAttribute("disabled")) {
-				this.checkbox.disabled = true;
-			}
-			
-			this.checkbox.addEventListener("change", () => {
-				this.updateCheckedAttribute();
-				const event = new window.Event("change");
-				event.checked = this.checkbox.checked;
-				this.dispatchEvent(event);
-			});
-		}
 	}
-	
-	thatDoc.registerElement("check-box", CheckBoxElement);
+
+	window.customElements.define("check-box", CheckBoxElement);
 })(window, document);
