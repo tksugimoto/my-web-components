@@ -57,7 +57,7 @@
 
 		_updateCheckedAttribute(checked) {
 			if (checked) {
-				this.setAttribute("checked", true);
+				this.setAttribute("checked", "");
 			} else {
 				this.removeAttribute("checked");
 			}
