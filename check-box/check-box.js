@@ -29,7 +29,7 @@
 				const checked = this._checkbox.checked;
 				this._updateCheckedAttribute(checked);
 				const event = new window.Event("change");
-				event.checked = this._checkbox.checked;
+				event.checked = checked;
 				this.dispatchEvent(event);
 			});
 		}
