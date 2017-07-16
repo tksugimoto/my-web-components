@@ -26,24 +26,38 @@
 			}
 			
 			this._checkbox.addEventListener("change", () => {
-				this.updateCheckedAttribute();
+				const checked = this._checkbox.checked;
+				this._updateCheckedAttribute(checked);
 				const event = new window.Event("change");
-				event.checked = this._checkbox.checked;
+				event.checked = checked;
 				this.dispatchEvent(event);
 			});
 		}
 
+		static get observedAttributes() {
+			return [
+				"checked",
+			];
+		}
+
+		attributeChangedCallback(name, oldValue, newValue) {
+			if (name === "checked") {
+				const checked = newValue !== null;
+				this._checkbox.checked = checked;
+			}
+		}
+
 		set checked(value) {
-			this._checkbox.checked = !!value;
-			this.updateCheckedAttribute();
+			const checked = !!value;
+			this._updateCheckedAttribute(checked);
 		}
 		get checked() {
 			return this._checkbox.checked;
 		}
 
-		updateCheckedAttribute() {
-			if (this._checkbox.checked) {
-				this.setAttribute("checked", true);
+		_updateCheckedAttribute(checked) {
+			if (checked) {
+				this.setAttribute("checked", "");
 			} else {
 				this.removeAttribute("checked");
 			}
