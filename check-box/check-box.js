@@ -27,7 +27,7 @@
 			
 			this._checkbox.addEventListener("change", () => {
 				const checked = this._checkbox.checked;
-				this.updateCheckedAttribute(checked);
+				this._updateCheckedAttribute(checked);
 				const event = new window.Event("change");
 				event.checked = this._checkbox.checked;
 				this.dispatchEvent(event);
@@ -49,13 +49,13 @@
 
 		set checked(value) {
 			const checked = !!value;
-			this.updateCheckedAttribute(checked);
+			this._updateCheckedAttribute(checked);
 		}
 		get checked() {
 			return this._checkbox.checked;
 		}
 
-		updateCheckedAttribute(checked) {
+		_updateCheckedAttribute(checked) {
 			if (checked) {
 				this.setAttribute("checked", true);
 			} else {
