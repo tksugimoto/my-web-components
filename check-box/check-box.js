@@ -37,6 +37,7 @@
 		static get observedAttributes() {
 			return [
 				"checked",
+				"disabled",
 			];
 		}
 
@@ -44,6 +45,9 @@
 			if (name === "checked") {
 				const checked = newValue !== null;
 				this._checkbox.checked = checked;
+			} else if (name === "disabled") {
+				const disabled = newValue !== null;
+				this._checkbox.disabled = disabled;
 			}
 		}
 
@@ -61,6 +65,17 @@
 			} else {
 				this.removeAttribute("checked");
 			}
+		}
+
+		set disabled(value) {
+			if (value) {
+				this.setAttribute("disabled", "");
+			} else {
+				this.removeAttribute("disabled");
+			}
+		}
+		get disabled() {
+			return this._checkbox.disabled;
 		}
 	}
 
