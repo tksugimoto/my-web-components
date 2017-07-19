@@ -18,13 +18,6 @@
 			
 			this._checkbox = shadowRoot.querySelector("input");
 			
-			if (this.hasAttribute("checked")) {
-				this._checkbox.checked = true;
-			}
-			if (this.hasAttribute("disabled")) {
-				this._checkbox.disabled = true;
-			}
-			
 			this._checkbox.addEventListener("change", () => {
 				const checked = this._checkbox.checked;
 				this._updateCheckedAttribute(checked);
