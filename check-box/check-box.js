@@ -31,6 +31,7 @@
 			return [
 				"checked",
 				"disabled",
+				"accesskey",
 			];
 		}
 
@@ -41,6 +42,12 @@
 			} else if (name === "disabled") {
 				const disabled = newValue !== null;
 				this._checkbox.disabled = disabled;
+			} else if (name === "accesskey") {
+				if (newValue) {
+					this._checkbox.setAttribute("accesskey", newValue);
+				} else {
+					this._checkbox.removeAttribute("accesskey");
+				}
 			}
 		}
 
