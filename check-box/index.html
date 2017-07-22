@@ -27,6 +27,14 @@
 			checkをはずす
 			<button id="uncheck-by_property">elem.checked = false;</button>
 			<button id="uncheck-by_attribute">elem.removeAttribute("checked");</button>
+		<br>
+			disabled状態にする
+			<button id="disable-by_property">elem.disabled = true;</button>
+			<button id="disable-by_attribute">elem.setAttribute("disabled", "");</button>
+		<br>
+			disabled状態を解除する
+			<button id="enable-by_property">elem.disabled = false;</button>
+			<button id="enable-by_attribute">elem.removeAttribute("disabled");</button>
 	</p>
 	<p>
 		<check-box id="test_check_box_2" accesskey="b" checked>
@@ -61,6 +69,19 @@
 			});
 			document.getElementById("uncheck-by_attribute").addEventListener("click", () => {
 				checkBox.removeAttribute("checked");
+			});
+
+			document.getElementById("disable-by_property").addEventListener("click", () => {
+				checkBox.disabled = true;
+			});
+			document.getElementById("disable-by_attribute").addEventListener("click", () => {
+				checkBox.setAttribute("disabled", "");
+			});
+			document.getElementById("enable-by_property").addEventListener("click", () => {
+				checkBox.disabled = false;
+			});
+			document.getElementById("enable-by_attribute").addEventListener("click", () => {
+				checkBox.removeAttribute("disabled");
 			});
 		})();
 	</script>
