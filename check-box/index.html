@@ -28,25 +28,13 @@
 		</check-box>
 	</p>
 	<script>
-		document.getElementById("test_check_box_1").addEventListener("change", evt => {
-			console.log({
-				name: "チェックボックスが変更された",
-				checked: evt.checked,
-				element: evt.target
-			});
-		});
-		document.getElementById("test_check_box_2").addEventListener("change", evt => {
-			console.log({
-				name: "チェックボックスが変更された",
-				checked: evt.checked,
-				element: evt.target
-			});
-		});
-		document.getElementById("test_check_box_3").addEventListener("change", evt => {
-			console.log({
-				name: "チェックボックスが変更された",
-				checked: evt.checked,
-				element: evt.target
+		document.querySelectorAll("check-box").forEach(checkBox => {
+			checkBox.addEventListener("change", evt => {
+				console.log({
+					name: "チェックボックスが変更された",
+					checked: evt.checked,
+					element: evt.target
+				});
 			});
 		});
 	</script>
