@@ -22,6 +22,11 @@
 			チェックボックス2 (accesskey: b) (ckecked)
 		</check-box>
 	</p>
+	<p>
+		<check-box id="test_check_box_3" accesskey="c" disabled>
+			チェックボックス3 (accesskey: c) (disabled)
+		</check-box>
+	</p>
 	<script>
 		document.getElementById("test_check_box_1").addEventListener("change", evt => {
 			console.log({
@@ -31,6 +36,13 @@
 			});
 		});
 		document.getElementById("test_check_box_2").addEventListener("change", evt => {
+			console.log({
+				name: "チェックボックスが変更された",
+				checked: evt.checked,
+				element: evt.target
+			});
+		});
+		document.getElementById("test_check_box_3").addEventListener("change", evt => {
 			console.log({
 				name: "チェックボックスが変更された",
 				checked: evt.checked,
