@@ -8,6 +8,9 @@
 			margin: 0px auto;
 			width: 800px;
 		}
+		button {
+			cursor: pointer;	
+		}
 	</style>
 	<link rel="import" href="check-box.html">
 </head>
@@ -16,6 +19,14 @@
 		<check-box id="test_check_box_1" accesskey="a">
 			チェックボックス1 (accesskey: a)
 		</check-box>
+		<br>
+			checkする
+			<button id="check-by_property">elem.checked = true;</button>
+			<button id="check-by_attribute">elem.setAttribute("checked", "");</button>
+		<br>
+			checkをはずす
+			<button id="uncheck-by_property">elem.checked = false;</button>
+			<button id="uncheck-by_attribute">elem.removeAttribute("checked");</button>
 	</p>
 	<p>
 		<check-box id="test_check_box_2" accesskey="b" checked>
@@ -37,6 +48,21 @@
 				});
 			});
 		});
+		(() => {
+			const checkBox = document.getElementById("test_check_box_1");
+			document.getElementById("check-by_property").addEventListener("click", () => {
+				checkBox.checked = true;
+			});
+			document.getElementById("check-by_attribute").addEventListener("click", () => {
+				checkBox.setAttribute("checked", "");
+			});
+			document.getElementById("uncheck-by_property").addEventListener("click", () => {
+				checkBox.checked = false;
+			});
+			document.getElementById("uncheck-by_attribute").addEventListener("click", () => {
+				checkBox.removeAttribute("checked");
+			});
+		})();
 	</script>
 </body>
 </html>
