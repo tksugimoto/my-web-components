@@ -8,35 +8,82 @@
 			margin: 0px auto;
 			width: 800px;
 		}
+		button {
+			cursor: pointer;	
+		}
 	</style>
 	<link rel="import" href="check-box.html">
 </head>
 <body>
 	<p>
-		<check-box id="test_check_box_1">
-			チェックボックス1
+		<check-box id="test_check_box_1" accesskey="a">
+			チェックボックス1 (accesskey: a)
+		</check-box>
+		<br>
+			checkする
+			<button id="check-by_property">elem.checked = true;</button>
+			<button id="check-by_attribute">elem.setAttribute("checked", "");</button>
+		<br>
+			checkをはずす
+			<button id="uncheck-by_property">elem.checked = false;</button>
+			<button id="uncheck-by_attribute">elem.removeAttribute("checked");</button>
+		<br>
+			disabled状態にする
+			<button id="disable-by_property">elem.disabled = true;</button>
+			<button id="disable-by_attribute">elem.setAttribute("disabled", "");</button>
+		<br>
+			disabled状態を解除する
+			<button id="enable-by_property">elem.disabled = false;</button>
+			<button id="enable-by_attribute">elem.removeAttribute("disabled");</button>
+	</p>
+	<p>
+		<check-box id="test_check_box_2" accesskey="b" checked>
+			チェックボックス2 (accesskey: b) (ckecked)
 		</check-box>
 	</p>
 	<p>
-		<check-box id="test_check_box_2">
-			チェックボックス2
+		<check-box id="test_check_box_3" accesskey="c" disabled>
+			チェックボックス3 (accesskey: c) (disabled)
 		</check-box>
 	</p>
 	<script>
-		document.getElementById("test_check_box_1").addEventListener("change", evt => {
-			console.log({
-				name: "チェックボックスが変更された",
-				checked: evt.checked,
-				element: evt.target
+		document.querySelectorAll("check-box").forEach(checkBox => {
+			checkBox.addEventListener("change", evt => {
+				console.log({
+					name: "チェックボックスが変更された",
+					checked: evt.checked,
+					element: evt.target
+				});
 			});
 		});
-		document.getElementById("test_check_box_2").addEventListener("change", evt => {
-			console.log({
-				name: "チェックボックスが変更された",
-				checked: evt.checked,
-				element: evt.target
+		(() => {
+			const checkBox = document.getElementById("test_check_box_1");
+			document.getElementById("check-by_property").addEventListener("click", () => {
+				checkBox.checked = true;
 			});
-		});
+			document.getElementById("check-by_attribute").addEventListener("click", () => {
+				checkBox.setAttribute("checked", "");
+			});
+			document.getElementById("uncheck-by_property").addEventListener("click", () => {
+				checkBox.checked = false;
+			});
+			document.getElementById("uncheck-by_attribute").addEventListener("click", () => {
+				checkBox.removeAttribute("checked");
+			});
+
+			document.getElementById("disable-by_property").addEventListener("click", () => {
+				checkBox.disabled = true;
+			});
+			document.getElementById("disable-by_attribute").addEventListener("click", () => {
+				checkBox.setAttribute("disabled", "");
+			});
+			document.getElementById("enable-by_property").addEventListener("click", () => {
+				checkBox.disabled = false;
+			});
+			document.getElementById("enable-by_attribute").addEventListener("click", () => {
+				checkBox.removeAttribute("disabled");
+			});
+		})();
 	</script>
 </body>
 </html>
