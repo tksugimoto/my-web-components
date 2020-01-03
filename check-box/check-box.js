@@ -1,6 +1,30 @@
-import templateElement from './check-box.html.js';
+const templateHTML = `
+	<style>
+		input:checked + span  {
+			font-weight: bold;
+		}
 
-const template = templateElement.content;
+		:host(:not([disabled])) input,
+		:host(:not([disabled])) label {
+			cursor: pointer;
+		}
+
+		input,
+		label {
+			user-select: none;
+		}
+		label > input,
+		label > span {
+			vertical-align: middle;
+		}
+	</style>
+	<label>
+		<input type="checkbox">
+		<span>
+			<slot></slot>
+		</span>
+	</label>
+`;
 
 class CheckBoxElement extends HTMLElement {
 	constructor() {
@@ -10,8 +34,7 @@ class CheckBoxElement extends HTMLElement {
 			mode: 'closed',
 		});
 
-		const clone = template.cloneNode(true);
-		shadowRoot.appendChild(clone);
+		shadowRoot.innerHTML = templateHTML;
 
 		this._checkbox = shadowRoot.querySelector('input');
 
