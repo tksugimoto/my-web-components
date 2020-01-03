@@ -1,9 +1,8 @@
-(function (window, document) {
+import templateElement from './check-box.html.js';
+(function (window) {
 	'use strict';
 
-	const ownerDocument = document.currentScript.ownerDocument;
-
-	const template = ownerDocument.querySelector('template').content;
+	const template = templateElement.content;
 
 	class CheckBoxElement extends HTMLElement {
 		constructor() {
@@ -80,4 +79,4 @@
 	}
 
 	window.customElements.define('check-box', CheckBoxElement);
-})(window, document);
+})(window);

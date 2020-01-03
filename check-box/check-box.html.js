@@ -1,5 +1,5 @@
-
-<template>
+const template = document.createElement('template');
+template.innerHTML = `
 	<style>
 		input:checked + span  {
 			font-weight: bold;
@@ -25,5 +25,6 @@
 			<slot></slot>
 		</span>
 	</label>
-</template>
-<script src="check-box.js"></script>
+`;
+
+export default template;
