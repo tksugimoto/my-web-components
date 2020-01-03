@@ -1,10 +1,10 @@
 (function (window, document) {
 	'use strict';
-	
+
 	const ownerDocument = document.currentScript.ownerDocument;
-	
+
 	const template = ownerDocument.querySelector('template').content;
-	
+
 	class CheckBoxElement extends HTMLElement {
 		constructor() {
 			super();
@@ -15,9 +15,9 @@
 
 			const clone = template.cloneNode(true);
 			shadowRoot.appendChild(clone);
-			
+
 			this._checkbox = shadowRoot.querySelector('input');
-			
+
 			this._checkbox.addEventListener('change', () => {
 				const checked = this._checkbox.checked;
 				this._updateCheckedAttribute(checked);
